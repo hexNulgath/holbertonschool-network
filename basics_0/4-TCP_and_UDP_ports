@@ -1,4 +1,4 @@
 #!/bin/bash
+# Script to display listening ports along with PID and program name
 
 netstat -l -p
-# Script to display listening ports along with PID and program name
