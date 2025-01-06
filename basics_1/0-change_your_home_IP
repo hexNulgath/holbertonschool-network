@@ -1,0 +1,8 @@
+#!/bin/bash
+#configures an Ubuntu server
+
+LOCALHOST_ENTRY="127.0.0.2 localhost"
+FACEBOOK_ENTRY="8.8.8.8 facebook.com"
+
+echo "$LOCALHOST_ENTRY" | sudo tee -a /etc/hosts > /dev/null
+echo "$FACEBOOK_ENTRY" | sudo tee -a /etc/hosts > /dev/null
