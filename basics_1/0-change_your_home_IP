@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 #configures an Ubuntu server
 
 LOCALHOST_ENTRY="127.0.0.2 localhost"
