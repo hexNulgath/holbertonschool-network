@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
 #configures an Ubuntu server
 
-# Create a temporary file for the new /etc/hosts content
-TEMP_FILE=$(mktemp)
-
 # Remove any existing localhost entry and add the new one
-sudo grep -v "localhost" /etc/hosts > "$TEMP_FILE"
-echo "127.0.0.2 localhost" | sudo tee -a "$TEMP_FILE" > /dev/null
+sudo grep -v "localhost" /etc/hosts > "mktemp"
+echo "127.0.0.2 localhost" | sudo tee -a "mktemp" > /dev/null
 
 # Replace the original /etc/hosts file
-sudo mv "$TEMP_FILE" /etc/hosts
+sudo mv "mktemp" /etc/hosts
 
 echo "8.8.8.8   facebook.com" | sudo tee -a /etc/hosts > /dev/null
