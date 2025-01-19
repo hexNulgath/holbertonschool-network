@@ -1,0 +1,33 @@
+```mermaid
+graph TD
+    %% DNS Resolution Flow
+    A[User enters https://www.google.com in browser] -->|Browser checks cache| B[Browser DNS Cache]
+    B -->|Yes: Cache Hit| C[Use cached IP and proceed to TCP/IP connection]
+    B -->|No: Query OS DNS Resolver| D[OS DNS Cache]
+    D -->|Yes: Cache Hit| C
+    D -->|No: Query DNS Resolver| F[Recursive DNS Resolver]
+    F -->|Yes: Cache Hit| C
+    F -->|No: Query Root DNS Server| I[Root DNS Server]
+    I -->|Returns TLD DNS Server| J[TLD DNS Server]
+    J -->|Returns Authoritative DNS Server| K[Authoritative DNS Server]
+    K -->|Returns IP Address| L[IP Address Resolved]
+    L -->|IP Sent to Recursive Resolver| F
+    C -->|IP Returned to Browser| H[Browser Receives Resolved IP]
+
+    %% TCP/IP Connection
+    H --> M[Browser Initiates TCP Handshake]
+    M -->|SYN| N[Server Receives SYN]
+    N -->|SYN-ACK| O[Browser Receives SYN-ACK]
+    O -->|ACK| P[Connection Established: Port 443]
+
+    %% Main Request Flow
+    P -->|Traffic Encrypted with HTTPS| Q[Firewall]
+    Q -->|Traffic Allowed| R[Load Balancer]
+    R -->|Distributes Request| S[Web Server]
+    S -->|Processes Request| T[Application Server]
+    T -->|Requests Data| U[Database]
+    U -->|Returns Data| T
+    T -->|Generates Web Page| S
+    S -->|Serves Web Page| A
+ 
+```
